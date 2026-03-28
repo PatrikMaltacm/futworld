@@ -1,20 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/styles.css">
-    <title> Home | FutWorld</title>
+    <title>Home | FutWorld</title>
 </head>
 <body>
     <header class="header">
-        <div>
-            <h3>FutWorld</h3>
+        <div class="logo-div">
+            <h3>⚽ FutWorld</h3>
         </div>
-        <div>
+        <nav class="links-div">
+            <a href="./index.html">Início</a>
             <a href="./jogos.html">Jogos</a>
-        </div>
+        </nav>
     </header>
+
+    <section class="hero">
+        <button class="btn-search" onclick="getNewsFutebol()">
+            🔄 Atualizar Notícias
+        </button>
+    </section>
+
+    <main id="news-container" class="news-grid"></main>
+
     <script src="./js/index.js"></script>
 </body>
 </html>

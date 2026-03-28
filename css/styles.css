@@ -1,23 +1,112 @@
-.header{
-    height: 70px;
-    display: flex;
-    justify-content: space-between;
+:root {
+  --bg-main: #0F1113;
+  --bg-surface: #1A1D21;
+  --color-primary: #2D9CDB;
+  --color-accent: #27AE60;
+  --text-high: #F8F9FA;
+  --text-low: #9BA3AF;
+  --transition: 0.3s ease;
 }
 
-.header div{
-    width: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    padding-left: 20px;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-high);
 }
 
-body{
-    font-family: sans-serif;
+/* Header */
+.header {
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
+  background-color: var(--bg-surface);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.links-div a {
+  margin-left: 20px;
+  color: var(--text-low);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.links-div a:hover {
+  color: var(--color-primary);
+}
+
+/* Botão */
+.hero { padding: 20px 5%; }
+.btn-search {
+  padding: 12px 24px;
+  background: var(--color-accent);
+  color: var(--bg-main);
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Grid de Notícias - RESOLVE O AMONTOADO */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+  padding: 20px 5%;
+}
+
+/* Card Individual */
+.news-card {
+  background: var(--bg-surface);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: var(--transition);
+}
+
+.news-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-primary);
+}
+
+.news-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card-body h4 {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.card-body p {
+  color: var(--text-low);
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.btn-link {
+  margin-top: auto; /* Joga o botão sempre para o fim do card */
+  color: var(--color-primary);
+  font-weight: bold;
+  text-decoration: none;
 }
