@@ -185,3 +185,7 @@ body {
 .world-text {
   color: green;
 }
+.logo {
+  width: 80px;   /* aumenta aqui */
+  height: auto;
+}
