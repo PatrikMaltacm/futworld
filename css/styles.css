@@ -182,3 +182,6 @@ body {
 .slider-container:hover .slider-btn {
     opacity: 1;
 }
+.world-text {
+  color: green;
+}
