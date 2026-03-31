@@ -17,29 +17,74 @@ async function getNewsFutebol() {
     container.innerHTML = "<h2>Erro ao carregar notícias. Tente novamente.</h2>";
   }
 }
+let currentSlide = 0;
+let slideInterval; // Variável global para controlar o timer
 
 function renderizarCards(articles) {
   const container = document.getElementById('news-container');
-  container.innerHTML = ""; // Limpa o carregando
+  container.innerHTML = "";
 
-  articles.forEach(article => {
-    // Evita notícias sem título ou imagem deletada
-    if (!article.title || article.title === "[Removed]") return;
+  const track = document.createElement('div');
+  track.className = 'slider-track';
+  track.id = 'slider-track';
 
-    const card = document.createElement('article');
-    card.className = 'news-card';
+  const validArticles = articles.filter(a => a.title && a.title !== "[Removed]");
 
-    card.innerHTML = `
-      <img src="${article.urlToImage || 'https://via.placeholder.com/300x180?text=FutWorld'}" alt="Notícia">
-      <div class="card-body">
-        <h4>${article.title}</h4>
-        <p>${article.description ? article.description.slice(0, 100) + '...' : 'Clique para ler mais detalhes sobre esta notícia.'}</p>
-        <a href="${article.url}" target="_blank" class="btn-link">Ler notícia completa →</a>
-      </div>
-    `;
+  validArticles.forEach(article => {
+    const slide = document.createElement('a');
+    slide.className = 'news-slide';
+    slide.href = article.url;
+    slide.target = "_blank";
+    slide.rel = "noopener noreferrer";
+    slide.style.backgroundImage = `url(${article.urlToImage || 'https://via.placeholder.com/1200x600?text=FutWorld'})`;
 
-    container.appendChild(card);
+    slide.innerHTML = `
+            <div class="slide-overlay">
+                <h2>${article.title}</h2>
+            </div>
+        `;
+    track.appendChild(slide);
   });
+
+  container.appendChild(track);
+
+  // ADICIONANDO OS BOTÕES MANUALMENTE
+  const btnPrev = document.createElement('button');
+  btnPrev.className = 'slider-btn prev-btn';
+  btnPrev.innerHTML = '&#10094;'; // Ícone <
+  btnPrev.onclick = () => moveSlide(-1, validArticles.length);
+
+  const btnNext = document.createElement('button');
+  btnNext.className = 'slider-btn next-btn';
+  btnNext.innerHTML = '&#10095;'; // Ícone >
+  btnNext.onclick = () => moveSlide(1, validArticles.length);
+
+  container.appendChild(btnPrev);
+  container.appendChild(btnNext);
+
+  startAutoSlide(validArticles.length);
+}
+
+// Função unificada para mover o slide
+function moveSlide(direction, total) {
+  const track = document.getElementById('slider-track');
+  if (!track) return;
+
+  currentSlide = (currentSlide + direction + total) % total;
+  track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+  // Resetar o timer para o usuário ter tempo de ler o slide que ele clicou
+  resetAutoSlide(total);
+}
+
+function startAutoSlide(total) {
+  if (total <= 1) return;
+  slideInterval = setInterval(() => moveSlide(1, total), 5000);
+}
+
+function resetAutoSlide(total) {
+  clearInterval(slideInterval);
+  startAutoSlide(total);
 }
 
 window.onload = getNewsFutebol;
