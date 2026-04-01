@@ -189,3 +189,11 @@ body {
   width: 80px;   /* aumenta aqui */
   height: auto;
 }
+.logo-header {
+  width: 40px;
+  
+}
+.title{
+  display: flex;
+  align-items: center;
+}
