@@ -1,0 +1,62 @@
+:root {
+  --bg-main: #0F1113;
+  --bg-surface: #1A1D21;
+  --color-primary: #2D9CDB;
+  --color-accent: #27AE60;
+  --text-high: #F8F9FA;
+  --text-low: #9BA3AF;
+  --transition: 0.3s ease;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-high);
+}
+
+/* Header */
+.header {
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
+  background-color: var(--bg-surface);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.links-div a {
+  margin-left: 20px;
+  color: var(--text-low);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.links-div a:hover {
+  color: var(--color-primary);
+}
+.logo {
+  width: 80px;   /* aumenta aqui */
+  height: auto;
+}
+.logo-header {
+  width: 40px;
+  
+}
+.title{
+  display: flex;
+  align-items: center;
+}
+.main-content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+}
