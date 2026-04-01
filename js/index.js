@@ -1,5 +1,5 @@
-const API_KEY = "02aad93c623245be9307b2a95bf329ed";
-const BASE_URL = "https://newsapi.org/v2/everything?q=futebol&from=2026-02-28&sortBy=publishedAt";
+const API_KEY = "pub_8ef4de72676e480ebf7aa6f92e0fab87";
+const BASE_URL = `https://newsdata.io/api/1/latest?apikey=pub_8ef4de72676e480ebf7aa6f92e0fab87&country=br&language=pt&category=sports`;
 
 async function getNewsFutebol() {
   const container = document.getElementById('news-container');
@@ -9,8 +9,8 @@ async function getNewsFutebol() {
     const response = await fetch(`${BASE_URL}&apiKey=${API_KEY}`);
     const dados = await response.json();
 
-    if (dados.articles) {
-      renderizarCards(dados.articles);
+    if (dados.results) {
+      renderizarCards(dados.results);
     }
   } catch (err) {
     console.error("Erro ao buscar noticias: ", err);
@@ -33,10 +33,10 @@ function renderizarCards(articles) {
   validArticles.forEach(article => {
     const slide = document.createElement('a');
     slide.className = 'news-slide';
-    slide.href = article.url;
+    slide.href = article.link;
     slide.target = "_blank";
     slide.rel = "noopener noreferrer";
-    slide.style.backgroundImage = `url(${article.urlToImage || 'https://via.placeholder.com/1200x600?text=FutWorld'})`;
+    slide.style.backgroundImage = `url(${article.image_url || 'https://via.placeholder.com/1200x600?text=FutWorld'})`;
 
     slide.innerHTML = `
             <div class="slide-overlay">
