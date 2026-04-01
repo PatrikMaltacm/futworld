@@ -1,6 +1,6 @@
 # ⚽ FutWorld
 
-Projeto colaborativo focado no ecossistema do futebol, desenvolvido com foco em Clean Code e boas práticas de estruturação para iniciantes.
+Projeto colaborativo focado no ecossistema do futebol, desenvolvido com foco em boas práticas de estruturação para iniciantes.
 
 ## 🎨 Identidade Visual
 
